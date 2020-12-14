@@ -1,0 +1,51 @@
+1. <el-menu router>的问题
+(1) <el-menu router>中 index="/homepage"是可以的，index="homepage"会报错！
+(2) 对于<el-submenu>，父菜单index应置为"null"。
+[参考] https://segmentfault.com/q/1010000015203274
+[拓展] https://blog.csdn.net/qq_31126175/article/details/81875468
+
+2. <el-step>问题
+设定步骤条时，文字不对齐。设置 <div style="text-align: left"> 即可。
+[参考] https://blog.csdn.net/DDghsot/article/details/91355124
+
+3. 取消定义参数就必须要用的规则
+在package.json中eslintConfig的规则中加入"no-unused-vars": "off"再重新运行即可。
+[参考] https://blog.csdn.net/weixin_38779534/article/details/102796068
+
+4. JS浅拷贝与深拷贝
+深拷贝采用 obj = JSON.parse(JSON.stringify(obj))。
+[参考] https://www.php.cn/js-tutorial-454630.html
+
+5. JS对象的比较
+使用 JSON.stringify(obj1) != JSON.stringify(obj2)。可能会因为顺序的原因导致的不等。
+[参考] https://www.jianshu.com/p/90ed8b728975
+
+6. mockjs之mock-server的配置
+(1) 对于devServer的配置应移步 @/vue.config.js 中配置。
+(2) 经过debug，devServer中应为："before: require('./mock/mock-server.js')"而不是"after"。
+[参考] https://blog.csdn.net/qq_41597258/article/details/86534076
+
+7. Vue强制页面刷新（但是不会出现瞬间的空白页）
+使用provide/inject，引入reload()。
+[参考] https://blog.csdn.net/yufengaotian/article/details/81238792
+
+8. 出现"SyntaxError: Cannot use import statement outside a module"
+(1) 安装了@babel/register后，会改变导入的方式。
+(2) 在主路径下新建".env.development"文件，添加"VUE_CLI_BABEL_TRANSPILE_MODULES = true"。
+(3) 添加此文件会把所有的import改成require。
+[参考] https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/babel-preset-app/index.js
+
+9. vue封装一个小组件
+使用"Name.vue"+"index.js"，并在上一层目录创建"index.js"统一导出，最后在main.js全局注册。
+[参考] https://zhuanlan.zhihu.com/p/144429139
+
+10. el-pagination一次性申请全部数据时的分页器代码
+(1) 重点是：":data="table.slice((page - 1) * rowsPerPage, page * rowsPerPage)"
+(2) 所有信息必须动态绑定（不能xxx="xx"，而是要:xxx="xx"）
+[参考] https://blog.csdn.net/qwe502763576/article/details/81283563
+
+11. element-ui表格列el-table-column如何根据数据不同显示不同的值
+(1) 使用el-table-column标签中的 :formatter="function"进行处理。
+(2) 传入的参数为row、column。
+[参考] https://blog.csdn.net/u010007013/article/details/97832170
+
